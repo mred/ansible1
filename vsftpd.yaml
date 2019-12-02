@@ -1,0 +1,17 @@
+# 1.4 implementing playbooks
+---
+- name: deploy vsftpd
+  hosts: centos
+  tasks:
+    - name: install vsftp
+      package:
+        name: vsftpd
+        state: latest
+    - name: enable vsftp
+      service: name=vsftpd enabled=true
+    - name: install readme
+      copy:
+        content: "Hello world!\n"
+        dest: /var/ftp/pub/README
+        force: no
+        mode: 0444
